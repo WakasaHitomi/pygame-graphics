@@ -51,15 +51,11 @@ while not done:
     ''' leave this section alone for now ''' 
 
     # Drawing code (Describe the picture. It isn't actually drawn yet.)
-    screen.fill(WHITE)
-    pygame.draw.rect(screen, RED, [50, 50, 400, 300])
-    pygame.draw.line(screen, GREEN, [300, 40], [100,500], 5)
-    pygame.draw.ellipse(screen, LAVENDER, [100, 100, 600, 300])
-    pygame.draw.polygon(screen, PURPLE, [[200, 200], [50,400], [600, 500]])
+    screen.fill(SKY)
+    
 
     ''' angles for arcs are measured in radians (a pre-cal topic) '''
-    pygame.draw.arc(screen, DPINK, [100, 100, 100, 100], 0, math.pi/2, 1)
-    pygame.draw.arc(screen, BLACK, [100, 100, 100, 100], 0, math.pi/2, 50)
+    pygame.draw.circle(screen, BEIGE, [100, 100, 100, 100], 0, math.pi/2, 50)
 
 
     # Update screen (Actually draw the picture in the window.)
