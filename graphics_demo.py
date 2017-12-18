@@ -55,7 +55,7 @@ while not done:
     
 
     ''' angles for arcs are measured in radians (a pre-cal topic) '''
-    pygame.draw.circle(screen, BEIGE, [100, 100, 100, 100], 0, math.pi/2, 50)
+    pygame.draw.arc(screen, BEIGE, [100, 100, 100, 100], 0, math.pi/2, 40)
 
 
     # Update screen (Actually draw the picture in the window.)
