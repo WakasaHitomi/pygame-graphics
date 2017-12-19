@@ -47,16 +47,12 @@ while not done:
             done = True
 
 
-    # Game logic (Check for collisions, update points, etc.)
-    ''' leave this section alone for now ''' 
-
-    # Drawing code (Describe the picture. It isn't actually drawn yet.)
     screen.fill(SKY)
-    
 
-    ''' angles for arcs are measured in radians (a pre-cal topic) '''
-    pygame.draw.arc(screen, BEIGE, [100, 100, 100, 100], 0, math.pi/2, 40)
-
+    #building shape
+    pygame.draw.ellipse(screen, BEIGE, [100, 300, 600, 700])
+    #grass
+    pygame.draw.rect(screen, LGREEN, [0, 470, 800, 800])
 
     # Update screen (Actually draw the picture in the window.)
     pygame.display.flip()
