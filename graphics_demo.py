@@ -55,13 +55,20 @@ while not done:
 
     screen.fill(SKY)
 
+    #back chimney
+    pygame.draw.ellipse(screen, WHITE, [230, 265, 80, 65])
+    pygame.draw.ellipse(screen, BLACK, [230, 265, 80, 65], 2)
+    pygame.draw.rect(screen, BEIGE, [230, 300, 80, 120])
+    pygame.draw.rect(screen, BLACK, [230, 300, 80, 120], 2)
     #building shape(make a black outline)
     pygame.draw.ellipse(screen, BEIGE, [100, 300, 600, 700])
+    pygame.draw.ellipse(screen, BLACK, [100, 300, 600, 700], 3)
     #grass
     pygame.draw.rect(screen, LGREEN, [0, 470, 800, 800])
     #building chimeney(make black circle outline and then cover some in beige circle to make roundness)
-    pygame.draw.rect(screen, BEIGE, [230, 300, 80, 120])
-    pygame.draw.rect(screen, BEIGE, [460, 250, 80, 120])
+    pygame.draw.ellipse(screen, BLACK, [457, 320, 81, 50], 1)
+    pygame.draw.rect(screen, BEIGE, [460, 250, 80, 95])
+    pygame.draw.rect(screen, BLACK, [460, 250, 80, 95], 2)
     #clouds
     draw_cloud(50, 150)
     draw_cloud(250, 75)
