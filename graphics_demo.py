@@ -47,9 +47,9 @@ def draw_cloud(x, y):
 def draw_flower(x, y):
     pygame.draw.rect(screen, DGREEN, [x, y, 3, 14])
     pygame.draw.ellipse(screen, YELLOW, [x - 4, y - 10, 13, 13])
-    pygame.draw.ellipse(screen, LAVENDER, [x - 10, y - 12, 12, 8])
-    pygame.draw.ellipse(screen, DPINK, [x - 3, y - 10, 8, 12])
-    pygame.draw.ellipse(screen, LAVENDER, [x + 6, y - 8, 12, 8])
+    pygame.draw.ellipse(screen, LAVENDER, [x - 10, y - 8, 12, 8])
+    pygame.draw.ellipse(screen, DPINK, [x - 3, y - 16, 8, 12])
+    pygame.draw.ellipse(screen, LAVENDER, [x + 4, y - 8, 12, 8])
     pygame.draw.ellipse(screen, YELLOW, [x - 4, y - 10, 13, 13])
     
 # Game loop
@@ -84,6 +84,7 @@ while not done:
     pygame.draw.rect(screen, BEIGE, [460, 250, 80, 95])
     pygame.draw.rect(screen, BLACK, [460, 250, 80, 95], 2)
     pygame.draw.rect(screen, BEIGE, [462, 344, 78, 3])
+    # front door
     #clouds
     draw_cloud(50, 150)
     draw_cloud(250, 75)
