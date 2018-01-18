@@ -54,7 +54,7 @@ def flower(x, y):
     pygame.draw.ellipse(screen, LAVENDER, [x + 4, y - 8, 12, 8])
     pygame.draw.ellipse(screen, BLACK, [x + 4, y - 8, 12, 8], 1)
     pygame.draw.ellipse(screen, YELLOW, [x - 4, y - 10, 13, 13])
-    
+
 # Game loop
 done = False
 
@@ -87,7 +87,7 @@ while not done:
     pygame.draw.rect(screen, BEIGE, [460, 250, 80, 95])
     pygame.draw.rect(screen, BLACK, [460, 250, 80, 95], 2)
     pygame.draw.rect(screen, BEIGE, [462, 344, 78, 3])
-    #building lines
+    #sunshine lines
     pygame.draw.line(screen, YELLOW, [30, 10], [200,320], 8)
     # front door
     pygame.draw.rect(screen, LBLUE, [420, 435, 20, 35])
@@ -99,12 +99,29 @@ while not done:
     draw_cloud(250, 75)
     draw_cloud(350, 125)
     draw_cloud(650, 100)
+    #fence
+    y = 480
+    for x in range(5, 800, 30):
+        post = [x+5, y], [x+10, y+5], [x+10, y+40], [x, y+40], [x, y+5]
+        pygame.draw.polygon(screen, WHITE, post)
+
+    
+    pygame.draw.rect(screen, WHITE, [0, y+10, 800, 5])
+    pygame.draw.rect(screen, WHITE, [0, y+30, 800, 5])
+
+    pygame.draw.rect(screen, WHITE, [0, 510, 900, 5] )
+    pygame.draw.rect(screen, WHITE, [0, 495, 900, 5] )
     #flower
-    flower = []
-    for i in range(200):
-        x = random.randrange(0, 800)
-        y = random.randrange(470, 800)
-        r = random.randrange(1, 5)
+    flower(55, 495)
+    flower(84, 508)
+    flower(104, 540)
+    flower(32, 568)
+    flower(10, 587)
+    flower(75, 600)
+    flower(6, 495)
+    flower(37, 700)
+    flower(55, 676)
+
     
     #palm tree recipie~~~~~~~~~~~~~~~~~~
     
