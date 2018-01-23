@@ -73,6 +73,10 @@ def tree(x, y):
     pygame.draw.ellipse(screen, BLACK, [x + 5, y - 10 , 20, 20], 1)
     pygame.draw.ellipse(screen, DGREEN, [x - 2, y - 10 , 20, 20])
 
+def sunshine(color, x, y):
+    pygame.draw.line(screen, color, [x, 10], [y,320], 8)
+
+
 # Game loop
 done = False
 
@@ -86,6 +90,11 @@ while not done:
 
     screen.fill(SKY)
 
+    #sunshine lines
+    sunshine(YELLOW, 30, 200)
+    sunshine(ORANGE, 10, 80)
+    sunshine(YELLOW, 120, 760)
+    sunshine(ORANGE, 80, 456)
 
     #back chimney
     pygame.draw.ellipse(screen, WHITE, [230, 265, 80, 65])
@@ -109,8 +118,15 @@ while not done:
     pygame.draw.rect(screen, BEIGE, [460, 250, 80, 95])
     pygame.draw.rect(screen, BLACK, [460, 250, 80, 95], 2)
     pygame.draw.rect(screen, BEIGE, [462, 344, 78, 3])
-    #sunshine lines
-    pygame.draw.line(screen, YELLOW, [30, 10], [200,320], 8)
+    #windows
+    pygame.draw.rect(screen, LBLUE, [463, 280, 45, 8])
+    pygame.draw.rect(screen, LBLUE, [490, 260, 45, 8])
+    pygame.draw.rect(screen, LBLUE, [478, 300, 45, 8])
+
+
+    pygame.draw.rect(screen, LBLUE, [200, 400, 300, 20])
+    pygame.draw.rect(screen, LBLUE, [185, 440, 420, 15])
+
     # front door
     pygame.draw.rect(screen, LBLUE, [420, 435, 20, 35])
     pygame.draw.rect(screen, BLACK, [420, 435, 20, 35], 1)
