@@ -19,7 +19,7 @@ pygame.display.set_caption(TITLE)
 
 # Timer
 clock = pygame.time.Clock()
-refresh_rate = 30
+refresh_rate = 80
 
 # Colors
 GREEN = (0, 175, 0)
@@ -29,14 +29,14 @@ YELLOW = (255, 255, 175)
 GREY = (192, 195, 198)
 GBLUE = (32, 69, 130)
 
-def make_rain():
+def make_rain(s):
     for s in rain:
-        pygame.draw.ellipse(screen, YELLOW, s)
-        
+        pygame.draw.ellipse(screen, GBLUE, s)
+                
 rain = []
-for i in range(200):
-    x = random.randrange(0, 800)
-    y = random.randrange(0, 400)
+for i in range(8888):
+    x = random.randrange(-1600, 800)
+    y = random.randrange(-1600, 400)
     r = random.randrange(1, 5)
     s = [x, y, r, r]
     rain.append(s)
@@ -78,22 +78,21 @@ while not done:
         if c[0] > 900:
              c[0] = random.randrange(-1600, -100)
              c[1] = random.randrange(-50, 200)
+
+    for s in rain:
+        s[1] += 6
+        s[0] += 2
+           
+        if s[1] > 810:
+             s[0] = random.randrange(-200, 810)
+             s[1] = random.randrange(-1600, 0)
              
     # Drawing code
     
     
     ''' sky '''
     screen.fill(BLUE)
-    '''rain'''
-    make_rain()
-
-    ''' sun '''
-    pygame.draw.ellipse(screen, YELLOW, [575, 75, 100, 100])
-
-    ''' clouds '''
-    for c in clouds:
-        draw_cloud(c)
-
+    
     ''' grass '''
     pygame.draw.rect(screen, GREEN, [0, 400, 800, 200])
 
@@ -105,6 +104,19 @@ while not done:
                                             [x, y+5]])
     pygame.draw.line(screen, WHITE, [0, 390], [800, 390], 5)
     pygame.draw.line(screen, WHITE, [0, 410], [800, 410], 5)
+
+
+    
+    '''rain'''
+    make_rain(s)
+
+    ''' sun '''
+    pygame.draw.ellipse(screen, YELLOW, [575, 75, 100, 100])
+
+    ''' clouds '''
+    for c in clouds:
+        draw_cloud(c)
+
 
 
     # Update screen
