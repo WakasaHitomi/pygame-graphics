@@ -31,6 +31,7 @@ GRAY = (150, 150, 150)
 DARK_GRAY = (75, 75, 75)
 NOT_QUITE_DARK_GRAY = (100, 100, 100)
 YELLOW = (200, 200, 100)
+BLACK = (0, 0, 0)
 
 
 def draw_cloud(loc, color):
@@ -83,11 +84,14 @@ lightning_prob = 300 # (higher is less frequent)
 lightning_timer = 0
 
 # Sound Effects
-pygame.mixer.music.load("sounds/rain.ogg")
-thunder = pygame.mixer.Sound("sounds/thunder.ogg")
+pygame.mixer.music.load("creepy/humming.ogg")
+thunder = pygame.mixer.Sound("creepy/thunder.ogg")
 
 # Game loop
 pygame.mixer.music.play(-1)
+
+daytime = True
+lights_on = False
 
 done = False
 
@@ -96,7 +100,12 @@ while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True     
-
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                daytime = not daytime
+            elif event.key == pygame.K_l:
+                lights_on = not lights_on
+             # google 'pygame key constants' for more keys
     # Game logic
     ''' move clouds '''
     for c in far_clouds:
@@ -112,6 +121,20 @@ while not done:
         if c[0] < -100:
             c[0] = random.randrange(800, 1600)
             c[1] = random.randrange(-50, 200)
+
+    ''' set sky color '''
+    if daytime:
+        sky = GRAY
+    else:
+        sky = BLACK
+
+    ''' set window color (if there was a house)'''
+    if lights_on:
+        window_color = YELLOW
+    else:
+        window_color = WHITE
+        
+
 
     ''' move rain '''
     for r in rain:
@@ -134,7 +157,7 @@ while not done:
     if lightning_timer > 0:
         screen.fill(YELLOW)
     else:
-        screen.fill(GRAY)
+        screen.fill(sky)
 
     ''' sun '''
     #pygame.draw.ellipse(screen, YELLOW, [575, 75, 100, 100])
