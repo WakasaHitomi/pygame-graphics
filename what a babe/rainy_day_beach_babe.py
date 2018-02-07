@@ -88,7 +88,7 @@ pygame.mixer.music.load("creepy/humming.ogg")
 thunder = pygame.mixer.Sound("creepy/thunder.ogg")
 
 #image
-momo = pygame.image.load('cut_momo.png')
+babe = pygame.image.load('Bikini Babe-1.png')
 
 
 # Block
@@ -99,7 +99,7 @@ speed = 8
 def draw_block(loc):
     x = loc[0]
     y = loc[1]
-    screen.blit(momo, (x, y))
+    screen.blit(babe, (x, y))
 
 # Game loop
 pygame.mixer.music.play(-1)
@@ -148,7 +148,6 @@ while not done:
     loc[1] += vel[1]
 
              # google 'pygame key constants' for more keys
-    draw_block(loc)
     # Game logic
     ''' move clouds '''
     for c in far_clouds:
@@ -229,10 +228,12 @@ while not done:
     for c in near_clouds:
         draw_cloud(c, DARK_GRAY)
 
+draw_block(loc)
+
 
     # Update screen
-    pygame.display.flip()
-    clock.tick(refresh_rate)
+pygame.display.flip()
+clock.tick(refresh_rate)
 
 # Close window on quit
 pygame.quit()
