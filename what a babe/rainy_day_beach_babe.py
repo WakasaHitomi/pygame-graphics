@@ -8,6 +8,7 @@
 import pygame
 import random
 
+
 # Initialize game engine
 pygame.mixer.pre_init()
 pygame.init()
@@ -49,7 +50,7 @@ def draw_raindrop(drop):
     pygame.draw.ellipse(screen, DARK_BLUE, rect)
 
 ''' Make clouds '''
-num_clouds = 30
+num_clouds = 8
 near_clouds = []
 
 for i in range(num_clouds):
@@ -58,7 +59,7 @@ for i in range(num_clouds):
     loc = [x, y]
     near_clouds.append(loc)
 
-num_clouds = 50
+num_clouds = 16
 far_clouds = []
 
 for i in range(num_clouds):
@@ -88,18 +89,25 @@ pygame.mixer.music.load("creepy/humming.ogg")
 thunder = pygame.mixer.Sound("creepy/thunder.ogg")
 
 #image
-babe = pygame.image.load('Bikini Babe-1.png')
+babe1 = pygame.image.load('Bikini Babe-1.png')
+babe2 = pygame.image.load('Bikini Babe-2.png')
+babe3 = pygame.image.load('Bikini Babe-3.png')
+babe4 = pygame.image.load('Bikini Babe-4.png')
+babe5 = pygame.image.load('Bikini Babe-5.png')
+babe6 = pygame.image.load('Bikini Babe-6.png')
 
+bikini_babe = [babe1, babe2, babe3, babe4, babe5, babe6]
 
 # Block
 loc = [380, 280]
 vel = [0, 0]
 speed = 8
 
-def draw_block(loc):
+def George(loc, frame):
     x = loc[0]
     y = loc[1]
-    screen.blit(babe, (x, y))
+    
+    screen.blit(bikini_babe[frame], (x, y))
 
 # Game loop
 pygame.mixer.music.play(-1)
@@ -108,6 +116,9 @@ daytime = True
 lights_on = False
 
 done = False
+
+ticks = 0
+frame = 0
 
 while not done:
     # Event processing
@@ -146,6 +157,12 @@ while not done:
     # Game logic
     loc[0] += vel[0]
     loc[1] += vel[1]
+
+    ticks += 1
+    if ticks%20 == 0:
+        frame += 1
+        if frame > 5:
+            frame = 0
 
              # google 'pygame key constants' for more keys
     # Game logic
@@ -228,12 +245,12 @@ while not done:
     for c in near_clouds:
         draw_cloud(c, DARK_GRAY)
 
-draw_block(loc)
+    George(loc, frame)
 
 
     # Update screen
-pygame.display.flip()
-clock.tick(refresh_rate)
+    pygame.display.flip()
+    clock.tick(refresh_rate)
 
 # Close window on quit
 pygame.quit()
