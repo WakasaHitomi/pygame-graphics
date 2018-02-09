@@ -99,13 +99,13 @@ babe6 = pygame.image.load('Bikini Babe-6.png')
 bikini_babe = [babe1, babe2, babe3, babe4, babe5, babe6]
 
 # Block
-loc = [380, 280]
-vel = [0, 0]
+lov = [380, 280]
+vela = [0, 0]
 speed = 8
 
-def George(loc, frame):
-    x = loc[0]
-    y = loc[1]
+def George(lov, frame):
+    x = lov[0]
+    y = lov[1]
     
     screen.blit(bikini_babe[frame], (x, y))
 
@@ -136,27 +136,27 @@ while not done:
             done = True
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
-                vel[0] = speed
+                vela[0] = speed
             elif event.key == pygame.K_LEFT:
-                vel[0] = -speed
+                vela[0] = -speed
             elif event.key == pygame.K_DOWN:
-                vel[1] = speed
+                vela[1] = speed
             elif event.key == pygame.K_UP:
-                vel[1] = -speed
+                vela[1] = -speed
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_RIGHT:
-                vel[0] = 0
+                vela[0] = 0
             elif event.key == pygame.K_LEFT:
-                vel[0] = 0
+                vela[0] = 0
             elif event.key == pygame.K_DOWN:
-                vel[1] = 0
+                vela[1] = 0
             elif event.key == pygame.K_UP:
-                vel[1] = 0
+                vela[1] = 0
 
                 
     # Game logic
-    loc[0] += vel[0]
-    loc[1] += vel[1]
+    lov[0] += vela[0]
+    lov[1] += vela[1]
 
     ticks += 1
     if ticks%20 == 0:
@@ -245,7 +245,7 @@ while not done:
     for c in near_clouds:
         draw_cloud(c, DARK_GRAY)
 
-    George(loc, frame)
+    George(lov, frame)
 
 
     # Update screen
