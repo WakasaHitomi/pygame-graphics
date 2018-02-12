@@ -6,7 +6,7 @@ pygame.init()
 
 # Window
 SIZE = (800, 600)
-TITLE = "Moving Block"
+TITLE = "Rain Rain go away,Thats what all my haters say"
 screen = pygame.display.set_mode(SIZE)
 pygame.display.set_caption(TITLE)
 
@@ -29,21 +29,27 @@ babe7 = pygame.image.load('Bikini Babe-7.png')
 babe8 = pygame.image.load('Bikini Babe-8.png')
 babe9 = pygame.image.load('Bikini Babe-9.png')
 
+clouds = pygame.image.load('clouds')
+
 bikini_babe = [babe1, babe2, babe3, babe4, babe5, babe6, babe7, babe8, babe9]
 
 # Block
-loc = [380, 280]
-vel = [0, 0]
+place = [380, 280]
+velo = [0, 0]
 speed = 8
 
 def George(loc, frame):
-    x = loc[0]
-    y = loc[1]
+    x = place[0]
+    y = place[1]
     
     screen.blit(bikini_babe[frame], (x, y))
 
 
-    
+def draw_cloud(loc):
+    x = loc[0]
+    y = loc[1]
+    screen.blit(clouds, (x, y))
+
     
 # Game loop
 done = False
@@ -58,27 +64,27 @@ while not done:
             done = True
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
-                vel[0] = speed
+                velo[0] = speed
             elif event.key == pygame.K_LEFT:
-                vel[0] = -speed
+                velo[0] = -speed
             elif event.key == pygame.K_DOWN:
-                vel[1] = speed
+                velo[1] = speed
             elif event.key == pygame.K_UP:
-                vel[1] = -speed
+                velo[1] = -speed
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_RIGHT:
-                vel[0] = 0
+                velo[0] = 0
             elif event.key == pygame.K_LEFT:
-                vel[0] = 0
+                velo[0] = 0
             elif event.key == pygame.K_DOWN:
-                vel[1] = 0
+                velo[1] = 0
             elif event.key == pygame.K_UP:
-                vel[1] = 0
+                velo[1] = 0
 
                 
     # Game logic
-    loc[0] += vel[0]
-    loc[1] += vel[1]
+    place[0] += velo[0]
+    place[1] += velo[1]
 
     ticks += 1
     if ticks%50 == 0:
@@ -87,7 +93,7 @@ while not done:
             frame = 0
     # Drawing code
     screen.fill(BLACK)
-    George(loc, frame)
+    George(place, frame)
 
 
     # Update screen
