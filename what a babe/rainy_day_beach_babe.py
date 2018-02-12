@@ -35,6 +35,32 @@ YELLOW = (200, 200, 100)
 BLACK = (0, 0, 0)
 
 
+#image
+babe1 = pygame.image.load('Bikini Babe-1.png')
+babe2 = pygame.image.load('Bikini Babe-2.png')
+babe3 = pygame.image.load('Bikini Babe-3.png')
+babe4 = pygame.image.load('Bikini Babe-4.png')
+babe5 = pygame.image.load('Bikini Babe-5.png')
+babe6 = pygame.image.load('Bikini Babe-6.png')
+babe7 = pygame.image.load('Bikini Babe-7.png')
+babe8 = pygame.image.load('Bikini Babe-8.png')
+babe9 = pygame.image.load('Bikini Babe-9.png')
+
+bikini_babe = [babe1, babe2, babe3, babe4, babe5, babe6, babe7, babe8, babe9]
+
+# Block
+place = [380, 280]
+vel = [0, 0]
+speed = 8
+
+def George(place, frame):
+    x = place[0]
+    y = place[1]
+    
+    screen.blit(bikini_babe[frame], (x, y))
+
+
+
 def draw_cloud(loc, color):
     x = loc[0]
     y = loc[1]
@@ -88,26 +114,6 @@ lightning_timer = 0
 pygame.mixer.music.load("creepy/humming.ogg")
 thunder = pygame.mixer.Sound("creepy/thunder.ogg")
 
-#image
-babe1 = pygame.image.load('Bikini Babe-1.png')
-babe2 = pygame.image.load('Bikini Babe-2.png')
-babe3 = pygame.image.load('Bikini Babe-3.png')
-babe4 = pygame.image.load('Bikini Babe-4.png')
-babe5 = pygame.image.load('Bikini Babe-5.png')
-babe6 = pygame.image.load('Bikini Babe-6.png')
-
-bikini_babe = [babe1, babe2, babe3, babe4, babe5, babe6]
-
-# Block
-lov = [380, 280]
-vela = [0, 0]
-speed = 8
-
-def George(lov, frame):
-    x = lov[0]
-    y = lov[1]
-    
-    screen.blit(bikini_babe[frame], (x, y))
 
 # Game loop
 pygame.mixer.music.play(-1)
@@ -136,32 +142,32 @@ while not done:
             done = True
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
-                vela[0] = speed
+                vel[0] = speed
             elif event.key == pygame.K_LEFT:
-                vela[0] = -speed
+                vel[0] = -speed
             elif event.key == pygame.K_DOWN:
-                vela[1] = speed
+                vel[1] = speed
             elif event.key == pygame.K_UP:
-                vela[1] = -speed
+                vel[1] = -speed
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_RIGHT:
-                vela[0] = 0
+                vel[0] = 0
             elif event.key == pygame.K_LEFT:
-                vela[0] = 0
+                vel[0] = 0
             elif event.key == pygame.K_DOWN:
-                vela[1] = 0
+                vel[1] = 0
             elif event.key == pygame.K_UP:
-                vela[1] = 0
+                vel[1] = 0
 
                 
     # Game logic
-    lov[0] += vela[0]
-    lov[1] += vela[1]
+    place[0] += vel[0]
+    place[1] += vel[1]
 
     ticks += 1
-    if ticks%20 == 0:
+    if ticks%30 == 0:
         frame += 1
-        if frame > 5:
+        if frame > 8:
             frame = 0
 
              # google 'pygame key constants' for more keys
@@ -245,7 +251,7 @@ while not done:
     for c in near_clouds:
         draw_cloud(c, DARK_GRAY)
 
-    George(lov, frame)
+    George(place, frame)
 
 
     # Update screen
