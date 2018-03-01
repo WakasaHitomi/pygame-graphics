@@ -35,6 +35,47 @@ YELLOW = (200, 200, 100)
 BLACK = (0, 0, 0)
 
 
+#image
+babe1 = pygame.image.load('Bikini Babe-1.png')
+babe2 = pygame.image.load('Bikini Babe-2.png')
+babe3 = pygame.image.load('Bikini Babe-3.png')
+babe4 = pygame.image.load('Bikini Babe-4.png')
+babe5 = pygame.image.load('Bikini Babe-5.png')
+babe6 = pygame.image.load('Bikini Babe-6.png')
+babe7 = pygame.image.load('Bikini Babe-7.png')
+babe8 = pygame.image.load('Bikini Babe-8.png')
+babe9 = pygame.image.load('Bikini Babe-9.png')
+
+bikini_babe = [babe1, babe2, babe3, babe4, babe5, babe6, babe7, babe8, babe9]
+
+
+sun = pygame.image.load('sun.png')
+moon = pygame.image.load('moon.png')
+
+cat = pygame.image.load('maze cat-1.png')
+
+
+# Block
+place = [380, 280]
+vel = [0, 0]
+speed = 8
+
+def George(place, frame):
+    x = place[0]
+    y = place[1]
+    
+    screen.blit(bikini_babe[frame], (x, y))
+
+place1 = [200, 280]
+vel1 = [0, 0]
+speed = 12
+
+def kitty(place1):
+    x = place1[0]
+    y = place1[1]
+
+
+
 def draw_cloud(loc, color):
     x = loc[0]
     y = loc[1]
@@ -87,30 +128,9 @@ lightning_timer = 0
 # Sound Effects
 pygame.mixer.music.load("creepy/humming.ogg")
 thunder = pygame.mixer.Sound("creepy/thunder.ogg")
+droplet = pygame.mixer.Sound("creepy/droplet.ogg")
 
-#image
-babe1 = pygame.image.load('Bikini Babe-1.png')
-babe2 = pygame.image.load('Bikini Babe-2.png')
-babe3 = pygame.image.load('Bikini Babe-3.png')
-babe4 = pygame.image.load('Bikini Babe-4.png')
-babe5 = pygame.image.load('Bikini Babe-5.png')
-babe6 = pygame.image.load('Bikini Babe-6.png')
-babe7 = pygame.image.load('Bikini Babe-7.png')
-babe8 = pygame.image.load('Bikini Babe-8.png')
-babe9 = pygame.image.load('Bikini Babe-9.png')
 
-bikini_babe = [babe1, babe2, babe3, babe4, babe5, babe6, babe7, babe8, babe9]
-
-# Block
-lov = [380, 280]
-vela = [0, 0]
-speed = 8
-
-def George(lov, frame):
-    x = lov[0]
-    y = lov[1]
-    
-    screen.blit(bikini_babe[frame], (x, y))
 
 # Game loop
 pygame.mixer.music.play(-1)
@@ -125,44 +145,102 @@ frame = 0
 
 while not done:
     # Event processing
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            done = True     
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
-                daytime = not daytime
-            elif event.key == pygame.K_l:
-                lights_on = not lights_on
+
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_RIGHT:
-                vela[0] = speed
-            elif event.key == pygame.K_LEFT:
-                vela[0] = -speed
-            elif event.key == pygame.K_DOWN:
-                vela[1] = speed
-            elif event.key == pygame.K_UP:
-                vela[1] = -speed
-        elif event.type == pygame.KEYUP:
-            if event.key == pygame.K_RIGHT:
-                vela[0] = 0
-            elif event.key == pygame.K_LEFT:
-                vela[0] = 0
-            elif event.key == pygame.K_DOWN:
-                vela[1] = 0
-            elif event.key == pygame.K_UP:
-                vela[1] = 0
+            
 
+    pressed = pygame.key.get_pressed()
+
+    day = pressed[pygame.K_TAB]
+    night = pressed[pygame.K_q]
+    sunn = pressed[pygame.K_n]
+    moonn = pressed[pygame.K_m]
+
+    
+    water = pressed[pygame.K_SPACE]
+    
+    up = pressed[pygame.K_UP]
+    down = pressed[pygame.K_DOWN]
+    left = pressed[pygame.K_LEFT]
+    right = pressed[pygame.K_RIGHT]
+
+    up1 = pressed[pygame.K_w]
+    down1 = pressed[pygame.K_s]
+    left1 = pressed[pygame.K_a]
+    right1 = pressed[pygame.K_d]
+
+
+    if left:
+        vel[0] = -speed
+    elif right:
+        vel[0] = speed
+    else:
+        vel[0] = 0
+    
+    
+    if left:
+        vel[0] = -speed
+    elif right:
+        vel[0] = speed
+        
+    else:
+        vel[0] = 0
+
+    
+    if up:
+        vel[1] = -speed
+    elif down:
+        vel[1] = speed
+    else:
+        vel[1] = 0
+
+
+   if left1:
+        vel1[0] = -speed
+    elif right:
+        vel1[0] = speed
+    else:
+        vel1[0] = 0
+    
+    
+    if left1:
+        vel1[0] = -speed
+    elif right1:
+        vel1[0] = speed
+        
+    else:
+        vel1[0] = 0
+
+    
+    if up1:
+        vel[1] = -speed
+    elif down1:
+        vel[1] = speed
+    else:
+        vel1[1] = 0
+
+
+        
+
+    if water:
+        droplet.play()
+
+    if day:
+        daytime = True
+
+    if night:
+        daytime = False
+    
                 
     # Game logic
-    lov[0] += vela[0]
-    lov[1] += vela[1]
+    place[0] += vel[0]
+    place[1] += vel[1]
 
     ticks += 1
-    if ticks%20 == 0:
+    if ticks%30 == 0:
         frame += 1
         if frame > 8:
             frame = 0
@@ -248,8 +326,20 @@ while not done:
     for c in near_clouds:
         draw_cloud(c, DARK_GRAY)
 
-    George(lov, frame)
+    if sunn:
+        screen.blit(sun, (-20, -10))
 
+    if moonn:
+        screen.blit(moon, (500, -380))
+
+
+    font = pygame.font.Font(None, 48)
+    text = font.render("She Stood Alone...", 1, WHITE)
+    screen.blit(text, [350, 100])
+    
+
+    George(place, frame)
+    kitty(place1)
 
     # Update screen
     pygame.display.flip()
