@@ -1,0 +1,7 @@
+Tab = Daytime
+Q = Nightime
+Arrow keys [human]= [ up, down, left, right]
+Space = water droplet sound
+N = Sun out
+M = moon out 
+{w,a,s,d} = cat [ up, down, left, right]
