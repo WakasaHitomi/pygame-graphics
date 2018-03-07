@@ -48,6 +48,17 @@ babe9 = pygame.image.load('Bikini Babe-9.png')
 
 bikini_babe = [babe1, babe2, babe3, babe4, babe5, babe6, babe7, babe8, babe9]
 
+tor1 = pygame.image.load('Tornado!!!!-1.png')
+tor2 = pygame.image.load('Tornado!!!!-2.png')
+tor3 = pygame.image.load('Tornado!!!!-3.png')
+tor4 = pygame.image.load('Tornado!!!!-4.png')
+tor5 = pygame.image.load('Tornado!!!!-5.png')
+tor6 = pygame.image.load('Tornado!!!!-6.png')
+tor7 = pygame.image.load('Tornado!!!!-7.png')
+tor8 = pygame.image.load('Tornado!!!!-8.png')
+
+tornado = [tor1, tor2, tor3, tor4, tor5, tor6, tor7, tor8]
+
 
 sun = pygame.image.load('sun.png')
 moon = pygame.image.load('moon.png')
@@ -74,6 +85,8 @@ def kitty(place1):
     x = place1[0]
     y = place1[1]
 
+    screen.blit(cat, (x, y))
+
 
 
 def draw_cloud(loc, color):
@@ -90,6 +103,11 @@ def draw_raindrop(drop):
     rect = drop[:4]
     pygame.draw.ellipse(screen, DARK_BLUE, rect)
 
+def dusty_gusty_boi(cord):
+    x = cord[0]
+    y = cord[1]
+
+    screen.blit(tornado[frames], (x, y))
 ''' Make clouds '''
 num_clouds = 8
 near_clouds = []
@@ -139,6 +157,9 @@ daytime = True
 lights_on = False
 
 done = False
+
+tick = 0
+frames = 0
 
 ticks = 0
 frame = 0
@@ -198,7 +219,7 @@ while not done:
         vel[1] = 0
 
 
-   if left1:
+    if left1:
         vel1[0] = -speed
     elif right:
         vel1[0] = speed
@@ -216,9 +237,9 @@ while not done:
 
     
     if up1:
-        vel[1] = -speed
+        vel1[1] = -speed
     elif down1:
-        vel[1] = speed
+        vel1[1] = speed
     else:
         vel1[1] = 0
 
@@ -238,6 +259,16 @@ while not done:
     # Game logic
     place[0] += vel[0]
     place[1] += vel[1]
+
+    place1[0] += vel1[0]
+    place1[1] += vel1[1]
+
+    tick += 1
+    if tick%30 == 0:
+        frames += 1
+        if frames > 8:
+            frames = 0
+
 
     ticks += 1
     if ticks%30 == 0:
@@ -340,6 +371,7 @@ while not done:
 
     George(place, frame)
     kitty(place1)
+    dusty_gusty_boi(cord)
 
     # Update screen
     pygame.display.flip()
