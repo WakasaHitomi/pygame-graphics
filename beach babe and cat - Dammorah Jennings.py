@@ -103,11 +103,13 @@ def draw_raindrop(drop):
     rect = drop[:4]
     pygame.draw.ellipse(screen, DARK_BLUE, rect)
 
-def dusty_gusty_boi(cord):
+def dusty_gusty_boi(cord, frames):
     x = cord[0]
     y = cord[1]
 
     screen.blit(tornado[frames], (x, y))
+
+    
 ''' Make clouds '''
 num_clouds = 8
 near_clouds = []
@@ -127,6 +129,14 @@ for i in range(num_clouds):
     loc = [x, y]
     far_clouds.append(loc)
 
+num_tornadoes = 10
+tornadoess = []
+
+for i in range(num_tornadoes):
+    x = random.randrange(-50, 1600)
+    y = random.randrange(-50, 50)
+    cord = [x, y]
+    tornadoess.append(cord)
 ''' Make rain '''
 num_drops = 700
 rain = []
@@ -266,7 +276,7 @@ while not done:
     tick += 1
     if tick%30 == 0:
         frames += 1
-        if frames > 8:
+        if frames > 7:
             frames = 0
 
 
@@ -292,6 +302,15 @@ while not done:
         if c[0] < -100:
             c[0] = random.randrange(800, 1600)
             c[1] = random.randrange(-50, 200)
+
+    for t in tornadoess:
+        t[0] += 4
+
+        if t[0] > 890:
+            t[0] = random.randrange(-50, 1600)
+            t[1] = random.randrange(-50, 200)
+
+            
 
     ''' set sky color '''
     if daytime:
@@ -357,6 +376,10 @@ while not done:
     for c in near_clouds:
         draw_cloud(c, DARK_GRAY)
 
+    '''nado'''
+    for t in tornadoess:
+        screen.blit(tornado[frames], (x, y))
+
     if sunn:
         screen.blit(sun, (-20, -10))
 
@@ -365,13 +388,13 @@ while not done:
 
 
     font = pygame.font.Font(None, 48)
-    text = font.render("She Stood Alone...", 1, WHITE)
+    text = font.render("She Stood Alone...", 3, WHITE)
     screen.blit(text, [350, 100])
     
 
     George(place, frame)
     kitty(place1)
-    dusty_gusty_boi(cord)
+    dusty_gusty_boi(cord, frames)
 
     # Update screen
     pygame.display.flip()
